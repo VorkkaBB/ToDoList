@@ -25,12 +25,8 @@ fun TaskScreen(viewModel: TaskViewModel) {
                 showDialog = false
                 taskToDelete = null
             },
-            title = {
-                Text(text = "Confirmar eliminación")
-            },
-            text = {
-                Text(text = "¿Estás seguro de que deseas borrar la tarea \"${taskToDelete?.name}\"?")
-            },
+            title = { Text(text = "Confirmar eliminación") },
+            text = { Text(text = "¿Estás seguro de que deseas borrar la tarea \"${taskToDelete?.name}\"?") },
             confirmButton = {
                 TextButton(
                     onClick = {
@@ -59,7 +55,8 @@ fun TaskScreen(viewModel: TaskViewModel) {
         modifier = Modifier
             .fillMaxSize()
             .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
         Text(
             text = "Mis Tareas",
@@ -90,7 +87,9 @@ fun TaskScreen(viewModel: TaskViewModel) {
         Spacer(modifier = Modifier.height(32.dp))
 
         LazyColumn(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f, fill = false)
         ) {
             items(taskList) { task ->
                 Card(
@@ -98,7 +97,7 @@ fun TaskScreen(viewModel: TaskViewModel) {
                         .fillMaxWidth()
                         .padding(vertical = 8.dp)
                         .combinedClickable(
-                            onClick = {  },
+                            onClick = { },
                             onLongClick = {
                                 taskToDelete = task
                                 showDialog = true
